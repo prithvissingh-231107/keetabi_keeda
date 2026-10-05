@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>keetabi_keeda</title>
+<style>
+
+/* ----------------yupppp coding shuru------------------ */
+
+/* ----------------- here comes Cascading Style Sheets (urf css) ------------------- */
+
+body{
+    background : linear-gradient(135deg,#e0eafc,#cfdef3);
+
+    margin:0;
+    padding:0;
+    font-family: Arial, sans-serif;
+}
+
+   header{
+    background: white;
+    padding: 10px 20px;
+    border-bottom: 5px dashed #b0c4de;
+    align-items: center;
+
+    justify-content: space-between;
+    display: flex;
+}
+
+.lg_box {
+    display: flex;
+       align-items: center;
+}
+
+.lg_pic {width: 40px;
+    height: 40px;
+}
+
+.lg_text{
+    font-size: 25px;
+    font-weight: bold;
+    color: #1e293b;
+}
+
+.std_tag {
+    padding: 10px 15px;
+      border :2px dashed #007bff;
+
+    font-size: 15px;
+    border-radius :20px;
+    font-weight: bold;
+}
+
+.page_lyt{
+      width: 95%;
+        max-width: 1500px;
+    margin: 20px auto;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.sidebar {
+    width: 200px;
+    background: white;
+    padding: 15px;
+   border: 2px solid #ddd;
+    border-radius: 10px;
+}
+.sidebar h2{
+    font-size: 15px;
+margin-top: 0;
+    border-bottom :2px dotted #ccc;
+    padding-bottom: 5px;
+}
+
+.sidebar button{
+    width: 100%;
+    background: #f8fafc;
+    padding: 10px;
+    margin-bottom: 10px;
+
+    border: 2px dotted #777;
+    border-radius: 5px;
+
+    font-weight: bold;
+    text-align: left;
+}
+
+.sidebar button:hover {
+    background: #1e293b;
+    color: white;}
+
+.cnt_area {
+    flex: 1;
+}
+.cnt_title{
+    color: #1e293b;
+    margin-top: 0px;
+}
+
+.books_grd{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+}
+.book_crd{
+    background: white;
+    border: 2px solid #ddd;
+      border-radius: 15px;
+    padding: 20px;
+
+    display: flex;
+   flex-direction: column;
+    align-items: center;}
+
+.book_crd:hover  {border-color: #007bff;}
+
+.book_crd img {
+width: 125px;
+    height: 170px;
+    margin-bottom :10px;
+}
+.book_crd h3{
+    font-size: 15px;
+    text-align  : center;
+    min-height: 35px;
+}
+.book_crd a{
+    background: #e67e22;
+    color: white;
+      text-decoration : none;
+
+    padding: 10px 15px;
+    border-radius : 5px;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.book_crd a:hover {
+    background :#d35400;
+}
+
+footer{
+    background: white;
+    margin-top: 30px;
+    padding: 15px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;}
+
+    @media(max-width:650px){
+.page_lyt { 
+        flex-direction: column;}
+
+.sidebar{
+        width: auto;}
+
+.cnt_title{
+        text-align: center;
+    }
+}
+
+</style>
+</head>
+
+<body>
+<!-------------------here goes Hypertext Markup Language (urf html)------------------->
+
+<header>
+
+
+<div class="lg_box">
+<img class="lg_pic" src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTEwL3JtNTM1LWJvb2stMDIucG5n.png" alt="book">
+
+<span class="lg_text">keetabi_keeda</span>
+
+</div>
+
+<div class="std_tag">Prithvi Singh - 26 BCS 10178</div>
+
+</header>
+
+
+<div class="page_lyt">
+
+<div class="sidebar">
+
+<h2>Subjects</h2>
+
+<button onclick="pick('html')">HTML</button>
+<button onclick="pick('css')">CSS</button>
+<button onclick="pick('js')">JavaScript</button>
+<button onclick="pick('java')">Java</button>
+<button onclick="pick('py')">Python</button>
+<button onclick="pick('c++')">C++</button>
+<button onclick="pick('ent')">Entrepreneurship</button>
+<button onclick="pick('astro')">Astronomy</button>
+<button onclick="pick('phy')">Physics</button>
+<button onclick="pick('chem')">Chemistry</button>
+</div>
+
+
+<div class="cnt_area">
+
+<h1 class="cnt_title">Book Recommendations</h1>
+
+<div class="books_grd" id="results">
+
+<p>Click on a subject to see some books.</p>
+
+</div>
+</div>
+
+</div>
+
+
+<footer>
+
+&copy; keetabi_keeda - Created by Prithvi Singh (26 BCS 10178)
+</footer>
+
+
+<script>
+// -----------------javascript shuru (urf js)------------------
+
+function make_crd(name, img, url) {
+    var card = "";
+
+    card = card + '<div class="book_crd">';
+    card = card + '<img src="' + img + '">';
+  card = card + '<h3>' + name + '</h3>';
+    card = card + '<a href="' + url + '" target="_blank">View on Amazon</a>';
+    card = card + '</div>';
+
+      return card;
+}
+
+// ----------------button click karo nd get directed to amazon ki web directly :)------------------
+
+function pick(topic) {
+
+    var result = document.getElementById("results");
+    var books = "";
+
+
+    if (topic == "html") {
+
+        books = make_crd (
+            "HTML and CSS Design", "https://m.media-amazon.com/images/I/31q-q71wU+L._SX397_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/HTML-CSS-Design-Build-Websites/dp/1118008189");
+
+        books+= make_crd (
+            "HTML5 and CSS3 Beginners", "https://m.media-amazon.com/images/I/51wQ3K891aL._SY445_SX342_.jpg",
+            "https://www.amazon.com/dp/B01J4M0PLK"
+        );
+
+        books+= make_crd (
+            "Head First HTML and CSS", "https://m.media-amazon.com/images/I/612a+i6Y+PL._SY422_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Head-First-HTML-CSS-Standards/dp/1449326690"
+        );
+    }
+
+    else if (topic == "css") {
+
+        books = make_crd(
+            "CSS The Definitive Guide", "https://m.media-amazon.com/images/I/512+1v0L+UL._SX258_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/CSS-Definitive-Guide-Visual-Presentation/dp/1449314287"
+        );
+
+        books+= make_crd (
+            "Secrets of JavaScript Ninja", "https://m.media-amazon.com/images/I/717g-k038sL._SY422_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Secrets-JavaScript-Ninja-John-Resig/dp/1617292850"
+        );
+
+        books+= make_crd(
+            "CSS Mastery", "https://m.media-amazon.com/images/I/511xG728wIL._SX384_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/CSS-Mastery-Advanced-Web-Standards/dp/1430223979"
+        );
+    }
+
+    else if (topic == "js") {
+
+        books = make_crd (
+            "Eloquent JavaScript","https://m.media-amazon.com/images/I/51InOD-gczL._SX376_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Eloquent-JavaScript-3rd-Introduction-Program/dp/1593279507");
+
+        books+= make_crd (
+            "You Dont Know JS","https://m.media-amazon.com/images/I/41T55YjLuCL._SX331_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/You-Dont-Know-JS-Up/dp/1491924462"
+        );
+
+          books+= make_crd (
+            "JavaScript Good Parts", "https://m.media-amazon.com/images/I/5131OWi-ibL._SX379_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742"
+        );
+    }
+
+    else if (topic == "java") {
+
+        books = make_crd(
+            "Effective Java", "https://m.media-amazon.com/images/I/71X9a9sgvPL._SY422_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Effective-Java-Joshua-Bloch/dp/0134685997"
+        );
+
+    books+= make_crd (
+            "Head First Java",
+            "https://m.media-amazon.com/images/I/51NcfjV5u+L._SX430_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Head-First-Java-Kathy-Sierra/dp/0596009208"
+        );
+
+        books+= make_crd(
+            "Java Beginners Guide",
+            "https://m.media-amazon.com/images/I/51Y9L3dK7WL._SX382_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Java-Beginners-Guide-Seventh/dp/1259589331"
+        );
+    }
+
+    else if (topic == "py") {
+
+        books = make_crd(
+            "Python Crash Course",
+            "https://m.media-amazon.com/images/I/51rP9t9J05L._SX376_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Python-Crash-Course-2nd-Edition/dp/1593279280"
+        );
+
+        books+= make_crd (
+            "Automate the Boring Stuff",
+            "https://m.media-amazon.com/images/I/61fi1016w6L._SX376_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Automate-Boring-Stuff-Python-2nd/dp/159327999X"
+        );
+  books+= make_crd(
+            "Learning Python",
+            "https://m.media-amazon.com/images/I/51+n5G43iLL._SX379_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Learning-Python-5th-Mark-Lutz/dp/1449355730"
+        );
+    }
+
+    else if (topic== "c++") {
+
+        books = make_crd(
+            "C++ Primer",
+            "https://m.media-amazon.com/images/I/617D5Uq7p1L._SX396_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Primer-5th-Stanley-B-Lippman/dp/0321714113"
+        );
+   books+= make_crd (
+            "C++ Programming Language", "https://m.media-amazon.com/images/I/410hV2z5dCL._SX384_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/C-Programming-Language-4th/dp/0321563840"
+        );
+
+        books += make_crd (
+            "Effective C++",
+            "https://m.media-amazon.com/images/I/51w9h4G7Q8L._SX382_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Effective-Specific-Ways-Improve-Programs/dp/0321334876"
+        );
+    }
+
+    else if (topic=="ent") {
+ books = make_crd(
+            "The Lean Startup", "https://m.media-amazon.com/images/I/81vvgZqCskL._SY422_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Lean-Startup-Entrepreneurship-Constant-Innovation/dp/0307887898"
+        );
+
+        books+= make_crd(
+            "Zero to One",
+            "https://m.media-amazon.com/images/I/71m-MxdjCoL._SY422_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Zero-One-Notes-Startups-Future/dp/0804139296"
+        );
+
+        books+= make_crd(
+            "The Innovators Dilemma", "https://m.media-amazon.com/images/I/41Lq3L5H8YL._SX331_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Innovators-Dilemma-Technologies-Management-Paperbacks/dp/161339725X"
+        );
+    }
+
+    else if (topic == "astro") {
+   books = make_crd(
+            "Cosmos",
+            "https://m.media-amazon.com/images/I/6169Qkv37sL._SY422_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Cosmos-Carl-Sagan/dp/0345539435"
+        );
+
+        books += make_crd(
+            "Astrophysics in a Hurry", "https://m.media-amazon.com/images/I/81h2gWPTYJL._SY422_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Astrophysics-People-Hurry-Neil-Tyson/dp/0393609391"
+        );
+
+        books+= make_crd(
+            "NightWatch Guide", "https://m.media-amazon.com/images/I/A1s+pYd+uLL._SY466_.jpg",
+            "https://www.amazon.com/NightWatch-Practical-Guide-Viewing-Universe/dp/1552093026"
+        );
+    }
+
+    else if (topic == "phy") {
+
+        books = make_crd(
+            "University Physics", "https://m.media-amazon.com/images/I/51Zk3i9t62L._SX396_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/University-Physics-Modern-14th/dp/0321973615"
+        );
+
+        books+= make_crd(
+            "Brief History of Time", "https://m.media-amazon.com/images/I/71g2ednj0JL._SY422_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Brief-History-Time-Stephen-Hawking/dp/0553380168"
+        );
+
+        books+= make_crd(
+            "Feynman Lectures Physics",
+            "https://m.media-amazon.com/images/I/71r0+HhA7tL._SY422_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Feynman-Lectures-Physics-3-set/dp/0465023827"
+        );
+    }
+
+    else if (topic =="chem") {
+
+        books = make_crd(
+            "Chemistry Central Science",
+            "https://m.media-amazon.com/images/I/71V2mCj0T2L._SY422_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Chemistry-Central-Science-14th/dp/0134414233"
+        );
+
+        books+= make_crd(
+            "Organic Chemistry",  "https://m.media-amazon.com/images/I/51Jg361R8DL._SX388_BO1,204,203,200_.jpg",
+            "https://www.amazon.com/Organic-Chemistry-Paula-Yurkanis-Bruice/dp/0134074582"
+        );
+
+    books+= make_crd(
+            "Atkins Physical Chemistry",
+            "https://m.media-amazon.com/images/I/51wQ3K891aL._SY445_SX342_.jpg",
+            "https://www.amazon.com/Atkins-Physical-Chemistry-11th-Peter/dp/0198769865"
+        );
+    }
+
+    else {
+        books= "<p>Sorry, no books found.</p>";
+    }
+
+
+    result.innerHTML =books;
+}
+</script>
+
+</body>
+</html>
+
+// ------------------------Code Padhne ke liye dhanyawaad sirji!----------------------------
